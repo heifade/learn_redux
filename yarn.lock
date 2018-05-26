@@ -87,6 +87,13 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-redux@^6.0.0":
+  version "6.0.0"
+  resolved "http://registry.npm.taobao.org/@types/react-redux/download/@types/react-redux-6.0.0.tgz#31711592b13ed6d6d2fd4506e5447b00e1f0b484"
+  dependencies:
+    "@types/react" "*"
+    redux "^4.0.0"
+
 "@types/react@*", "@types/react@^16.3.14":
   version "16.3.14"
   resolved "http://registry.npm.taobao.org/@types/react/download/@types/react-16.3.14.tgz#f90ac6834de172e13ecca430dcb6814744225d36"
