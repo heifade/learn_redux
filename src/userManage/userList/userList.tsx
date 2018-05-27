@@ -6,6 +6,7 @@ export interface Props {
   userList: Array<UserData>;
   delete: (userData: UserData) => {};
   edit: (userData: UserData) => {};
+  fetch: () => {};
 }
 
 export class UserList extends React.Component<Props, any> {
@@ -19,6 +20,10 @@ export class UserList extends React.Component<Props, any> {
   delete = (user: UserData) => {
     this.props.delete(user);
   };
+
+  componentDidMount() {
+    this.props.fetch();
+  }
 
   render() {
     return (

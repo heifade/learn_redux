@@ -8,26 +8,27 @@ export interface UserData {
   name: string;
 }
 
-export function reducerUserList(state: Array<UserData> = [], action: Action) {
+export function userListReducer(state: Array<UserData> = [], action: Action) {
   switch (action.type) {
-    case "user_delete": 
-      {
-        let index = state.findIndex(
-          (value, index) => value.id == Reflect.get(action, "userData").id
-        );
-        let list1 = state.splice(index + 1);
-        return state.splice(0, index).concat(list1);
-      }
-    case "user_edit_save": 
-      {
-        let newData = Reflect.get(action, "userData");
-        let index = state.findIndex(
-          (value, index) => value.id == newData.id
-        );
-        let data = state[index];
-        let list1 = state.splice(index + 1);
-        return state.splice(0, index).concat([newData]).concat(list1);
-      }
+    case "user_fetch":
+      return Reflect.get(action, "userList");
+    case "user_delete": {
+      let index = state.findIndex(
+        (value, index) => value.id == Reflect.get(action, "userData").id
+      );
+      let list1 = state.splice(index + 1);
+      return state.splice(0, index).concat(list1);
+    }
+    case "user_edit_save": {
+      let newData = Reflect.get(action, "userData");
+      let index = state.findIndex((value, index) => value.id == newData.id);
+      let data = state[index];
+      let list1 = state.splice(index + 1);
+      return state
+        .splice(0, index)
+        .concat([newData])
+        .concat(list1);
+    }
     case "fetch":
       return state;
     default:
@@ -41,17 +42,44 @@ const stateToProps = (state: StoreData) => {
   };
 
   return {
-    userList: reducerUserList(state.userList, action)
+    userList: userListReducer(state.userList, action)
   };
 };
 
 const dispatchToProps = (dispath: Dispatch) => {
   return {
+    fetch: () => {
+      dispath({
+        type: "wait_show"
+      });
+
+      setTimeout(() => {
+        let list = new Array<UserData>();
+        for (let i = 0; i < 20; i++) {
+          list.push({ id: `${i}`, name: `name${i}` });
+        }
+        dispath({
+          type: "user_fetch",
+          userList: list
+        });
+        dispath({
+          type: "wait_hide"
+        });
+      }, 1000);
+    },
     delete: (userData: UserData) => {
       dispath({
-        type: "user_delete",
-        userData: userData
+        type: "wait_show"
       });
+      setTimeout(() => {
+        dispath({
+          type: "user_delete",
+          userData: userData
+        });
+        dispath({
+          type: "wait_hide"
+        });
+      }, 1000);
     },
     edit: (userData: UserData) => {
       dispath({

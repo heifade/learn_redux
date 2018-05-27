@@ -4,7 +4,7 @@ import { Action, Dispatch } from "redux";
 import { UserEdit } from "./userEdit";
 import { StoreData } from "../../store";
 
-export function reducerUserEdit(state: UserData | null, action: Action) {
+export function userEditReducer(state: UserData | null, action: Action) {
   switch (action.type) {
     case "user_edit":
       return Reflect.get(action, "userData");
@@ -27,7 +27,7 @@ const stateToProps = (state: StoreData) => {
   };
 
   return {
-    currEditUser: reducerUserEdit(state.currEditUser, action)
+    currEditUser: userEditReducer(state.currEditUser, action)
   };
 };
 

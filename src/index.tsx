@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import UserList from "./userManage/userList/userListCtrl";
 import { store } from "./store";
 import UserEdit from "./userManage/userEdit/userEditCtrl";
+import Top from "./top/topCtrl";
 
 let div = document.createElement("div");
 document.body.appendChild(div);
@@ -14,6 +15,7 @@ ReactDOM.render(
     <div>
       <UserList />
       <UserEdit />
+      <Top />
     </div>
   </Provider>,
 
