@@ -1,29 +1,13 @@
-import { UserData, userListReducer } from "./userManage/userList/userListCtrl";
 import { createStore, Action } from "redux";
-import { userEditReducer } from "./userManage/userEdit/userEditCtrl";
 import { topReducer } from "./top/topCtrl";
+import { userManageReducer } from "./userManage/userManageCtrl";
+import { StoreModule } from "./module/module";
 
-export class TopData {
-  waitShow: boolean = false;
-}
-
-export class StoreData {
-  userList: Array<UserData>;
-  currEditUser: UserData | null = null;
-  top: TopData;
-}
-
-let initStoreData = new StoreData();
-initStoreData.userList = new Array<UserData>();
-
-
-export default function reducer(state = initStoreData, action: Action) {
+export default function reducer(state = new StoreModule(), action: Action) {
   return {
-    userList: userListReducer(state.userList, action),
-    currEditUser: userEditReducer(state.currEditUser, action),
-    top: topReducer(state.top, action),
+    userManage: userManageReducer(state.userManage, action),
+    top: topReducer(state.top, action)
   };
 }
-
 
 export let store = createStore(reducer);

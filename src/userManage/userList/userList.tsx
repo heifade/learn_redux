@@ -1,23 +1,23 @@
 import * as React from "react";
-import { UserData } from "./userListCtrl";
+import { UserModule } from "../../module/module";
 let styles = require("./userList.less");
 
 export interface Props {
-  userList: Array<UserData>;
-  delete: (userData: UserData) => {};
-  edit: (userData: UserData) => {};
+  userList: Array<UserModule>;
+  delete: (userData: UserModule) => {};
+  edit: (userData: UserModule) => {};
   fetch: () => {};
 }
 
-export class UserList extends React.Component<Props, any> {
+export class UserListComponent extends React.Component<Props, any> {
   constructor(props: Props, context: any) {
     super(props, context);
   }
 
-  edit = (user: UserData) => {
+  edit = (user: UserModule) => {
     this.props.edit(user);
   };
-  delete = (user: UserData) => {
+  delete = (user: UserModule) => {
     this.props.delete(user);
   };
 

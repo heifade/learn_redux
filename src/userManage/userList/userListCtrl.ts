@@ -1,14 +1,9 @@
 import { connect } from "react-redux";
-import { Action, combineReducers, Dispatch } from "redux";
-import { UserList } from "./userList";
-import { StoreData } from "../../store";
+import { Action, Dispatch } from "redux";
+import { UserListComponent } from "./userList";
+import { UserModule, StoreModule } from "../../module/module";
 
-export interface UserData {
-  id: string;
-  name: string;
-}
-
-export function userListReducer(state: Array<UserData> = [], action: Action) {
+export function userListReducer(state: Array<UserModule> = [], action: Action) {
   switch (action.type) {
     case "user_fetch":
       return Reflect.get(action, "userList");
@@ -36,13 +31,13 @@ export function userListReducer(state: Array<UserData> = [], action: Action) {
   }
 }
 
-const stateToProps = (state: StoreData) => {
+const stateToProps = (state: StoreModule) => {
   let action = {
     type: "fetch"
   };
 
   return {
-    userList: userListReducer(state.userList, action)
+    userList: userListReducer(state.userManage.userList, action)
   };
 };
 
@@ -54,7 +49,7 @@ const dispatchToProps = (dispath: Dispatch) => {
       });
 
       setTimeout(() => {
-        let list = new Array<UserData>();
+        let list = new Array<UserModule>();
         for (let i = 0; i < 20; i++) {
           list.push({ id: `${i}`, name: `name${i}` });
         }
@@ -67,7 +62,7 @@ const dispatchToProps = (dispath: Dispatch) => {
         });
       }, 1000);
     },
-    delete: (userData: UserData) => {
+    delete: (userData: UserModule) => {
       dispath({
         type: "wait_show"
       });
@@ -81,7 +76,7 @@ const dispatchToProps = (dispath: Dispatch) => {
         });
       }, 1000);
     },
-    edit: (userData: UserData) => {
+    edit: (userData: UserModule) => {
       dispath({
         type: "user_edit",
         userData: userData
@@ -90,4 +85,4 @@ const dispatchToProps = (dispath: Dispatch) => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(UserList);
+export default connect(stateToProps, dispatchToProps)(UserListComponent);

@@ -1,16 +1,16 @@
 import * as React from "react";
-import { UserData } from "../userList/userListCtrl";
+import { UserModule } from "../../module/module";
 let styles = require("./userEdit.less");
 
 export interface Props {
-  currEditUser: UserData | null;
+  currEditUser: UserModule | null;
 
   onUserNameChanged: (name: string) => {};
-  onSave: (userData: UserData) => {};
+  onSave: (userData: UserModule) => {};
   onCancel: () => {};
 }
 
-export class UserEdit extends React.Component<Props, any> {
+export class UserEditComponent extends React.Component<Props, any> {
   constructor(props: Props, context: any) {
     super(props, context);
   }

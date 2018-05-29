@@ -1,9 +1,9 @@
-import { TopData, StoreData } from "../store";
 import { Action } from "redux";
 import { connect } from "react-redux";
-import { Top } from "./top";
+import { TopComponent } from "./top";
+import { TopModule, StoreModule } from "../module/module";
 
-export function topReducer(state: TopData, action: Action) {
+export function topReducer(state: TopModule, action: Action) {
   switch (action.type) {
     case "wait_show":
       return {
@@ -20,7 +20,7 @@ export function topReducer(state: TopData, action: Action) {
   }
 }
 
-const stateToProps = (state: StoreData) => {
+const stateToProps = (state: StoreModule) => {
   let action = {
     type: ""
   };
@@ -30,4 +30,4 @@ const stateToProps = (state: StoreData) => {
   };
 };
 
-export default connect(stateToProps)(Top);
+export default connect(stateToProps)(TopComponent);

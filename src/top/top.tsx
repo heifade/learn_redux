@@ -7,7 +7,7 @@ export interface Props {
   };
 }
 
-export class Top extends React.Component<Props, any> {
+export class TopComponent extends React.Component<Props, any> {
   constructor(props: Props, context: any) {
     super(props, context);
   }

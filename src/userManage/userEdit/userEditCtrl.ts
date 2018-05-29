@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
-import { UserData } from "../userList/userListCtrl";
 import { Action, Dispatch } from "redux";
-import { UserEdit } from "./userEdit";
-import { StoreData } from "../../store";
+import { UserEditComponent } from "./userEdit";
+import { UserModule, StoreModule } from "../../module/module";
 
-export function userEditReducer(state: UserData | null, action: Action) {
+export function userEditReducer(state: UserModule | null, action: Action) {
   switch (action.type) {
     case "user_edit":
       return Reflect.get(action, "userData");
@@ -21,13 +20,13 @@ export function userEditReducer(state: UserData | null, action: Action) {
   }
 }
 
-const stateToProps = (state: StoreData) => {
+const stateToProps = (state: StoreModule) => {
   let action = {
     type: "fetch_user_eidt"
   };
 
   return {
-    currEditUser: userEditReducer(state.currEditUser, action)
+    currEditUser: userEditReducer(state.userManage.currEditUser, action)
   };
 };
 
@@ -39,7 +38,7 @@ const dispatchToProps = (dispath: Dispatch) => {
         value
       });
     },
-    onSave: (userData: UserData) => {
+    onSave: (userData: UserModule) => {
       dispath({
         type: "user_edit_save",
         userData
@@ -53,4 +52,4 @@ const dispatchToProps = (dispath: Dispatch) => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(UserEdit);
+export default connect(stateToProps, dispatchToProps)(UserEditComponent);
