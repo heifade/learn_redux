@@ -39,10 +39,10 @@ const stateToProps = (state: StoreModule) => {
   };
 };
 
-const dispatchToProps = (dispath: Dispatch) => {
+const dispatchToProps = (dispatch: Dispatch) => {
   return {
     fetch: () => {
-      dispath({
+      dispatch({
         type: "wait_show"
       });
 
@@ -51,31 +51,31 @@ const dispatchToProps = (dispath: Dispatch) => {
         for (let i = 0; i < 20; i++) {
           list.push({ id: `${i}`, name: `name${i}` });
         }
-        dispath({
+        dispatch({
           type: "user_fetch",
           userList: list
         });
-        dispath({
+        dispatch({
           type: "wait_hide"
         });
       }, 1000);
     },
     delete: (userData: UserModule) => {
-      dispath({
+      dispatch({
         type: "wait_show"
       });
       setTimeout(() => {
-        dispath({
+        dispatch({
           type: "user_delete",
           userData: userData
         });
-        dispath({
+        dispatch({
           type: "wait_hide"
         });
       }, 1000);
     },
     edit: (userData: UserModule) => {
-      dispath({
+      dispatch({
         type: "user_edit",
         userData: userData
       });
