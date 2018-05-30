@@ -3,7 +3,8 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Top from "./top/topCtrl";
-import UserManage from "./userManage/userManageCtrl";
+import UserList from "./userManage/userList/userListCtrl";
+import UserEdit from "./userManage/userEdit/userEditCtrl";
 
 let div = document.createElement("div");
 document.body.appendChild(div);
@@ -11,7 +12,8 @@ document.body.appendChild(div);
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <UserManage />
+      <UserList />
+      <UserEdit />
       <Top />
     </div>
   </Provider>,
