@@ -3,7 +3,7 @@ import { Action, Dispatch } from "redux";
 import { UserEditComponent } from "./userEdit";
 import { UserModule, StoreModule } from "../../module/module";
 
-export function userEditReducer(state: UserModule | null, action: Action) {
+export function userEditReducer(state: UserModule | null = null, action: Action) {
   switch (action.type) {
     case "user_edit":
       return Reflect.get(action, "userData");
