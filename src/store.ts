@@ -11,3 +11,7 @@ export default function reducer(state = new StoreModule(), action: Action) {
 }
 
 export let store = createStore(reducer);
+
+store.subscribe(() => {
+  // console.log(1, store.getState());
+});

@@ -3,7 +3,7 @@ import { Action, Dispatch } from "redux";
 import { UserListComponent } from "./userList";
 import { UserModule, StoreModule } from "../../module/module";
 
-export function userListReducer(state: Array<UserModule> = [], action: Action) {
+export function userListReducer(state = new Array<UserModule>(), action: Action) {
   switch (action.type) {
     case "user_fetch":
       return Reflect.get(action, "userList");

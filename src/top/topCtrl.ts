@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { TopComponent } from "./top";
 import { TopModule, StoreModule } from "../module/module";
 
-export function topReducer(state: TopModule, action: Action) {
+export function topReducer(state = new TopModule(), action: Action) {
   switch (action.type) {
     case "wait_show":
       return {

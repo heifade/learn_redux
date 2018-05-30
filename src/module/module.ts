@@ -4,15 +4,15 @@ export class UserModule {
 }
 
 export class TopModule {
-  waitShow: boolean = false;
+  waitShow: boolean;
 }
 
 export class UserManageModule {
-  userList: Array<UserModule> = [];
-  currEditUser: UserModule | null = null;
+  userList: Array<UserModule>;
+  currEditUser: UserModule | null;
 }
 
 export class StoreModule {
-  userManage = new UserManageModule();
-  top = new TopModule();
+  userManage: UserManageModule;
+  top: TopModule;
 }
