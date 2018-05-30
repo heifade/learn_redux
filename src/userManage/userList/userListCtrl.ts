@@ -33,13 +33,13 @@ export function userListReducer(
   }
 }
 
-const stateToProps = (state: StoreModule) => {
+const mapStateToProps = (state: StoreModule) => {
   return {
     userList: state.userManage.userList
   };
 };
 
-const dispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     fetch: () => {
       dispatch({
@@ -83,4 +83,4 @@ const dispatchToProps = (dispatch: Dispatch) => {
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(UserListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UserListComponent);

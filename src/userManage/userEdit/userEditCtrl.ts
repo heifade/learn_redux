@@ -18,10 +18,10 @@ export function userEditReducer(state: UserModule | null = null, action: Action)
   }
 }
 
-const stateToProps = (state: StoreModule) => {
+const mapStateToProps = (state: StoreModule) => {
   return {
     currEditUser: state.userManage.currEditUser
   };
 };
 
-export default connect(stateToProps)(UserEditComponent);
+export default connect(mapStateToProps)(UserEditComponent);

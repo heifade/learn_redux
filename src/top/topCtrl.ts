@@ -20,14 +20,14 @@ export function topReducer(state = new TopModule(), action: Action) {
   }
 }
 
-const stateToProps = (state: StoreModule) => {
+const mapStateToProps = (state: StoreModule) => {
   let action = {
     type: ""
   };
 
   return {
-    top: topReducer(state.top, action)
+    top: state.top,
   };
 };
 
-export default connect(stateToProps)(TopComponent);
+export default connect(mapStateToProps)(TopComponent);
