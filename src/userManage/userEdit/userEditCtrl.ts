@@ -18,7 +18,7 @@ export function userEditReducer(state: UserModule | null = null, action: Action)
   }
 }
 
-const mapStateToProps = (state: StoreModule) => {
+const mapStateToProps = (state: StoreModule, ownProps: any) => {
   return {
     currEditUser: state.userManage.currEditUser
   };

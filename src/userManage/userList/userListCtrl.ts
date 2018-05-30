@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Action, Dispatch } from "redux";
-import { UserListComponent } from "./userList";
+import { UserListComponent, Props } from "./userList";
 import { UserModule, StoreModule } from "../../module/module";
 
 
@@ -33,7 +33,7 @@ export function userListReducer(
   }
 }
 
-const mapStateToProps = (state: StoreModule) => {
+const mapStateToProps = (state: StoreModule, ownProps: any) => {
   return {
     userList: state.userManage.userList
   };
