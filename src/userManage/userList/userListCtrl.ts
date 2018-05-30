@@ -3,7 +3,11 @@ import { Action, Dispatch } from "redux";
 import { UserListComponent } from "./userList";
 import { UserModule, StoreModule } from "../../module/module";
 
-export function userListReducer(state = new Array<UserModule>(), action: Action) {
+
+export function userListReducer(
+  state = new Array<UserModule>(),
+  action: Action
+) {
   switch (action.type) {
     case "user_fetch":
       return Reflect.get(action, "userList");
@@ -24,20 +28,14 @@ export function userListReducer(state = new Array<UserModule>(), action: Action)
         .concat([newData])
         .concat(list1);
     }
-    case "fetch":
-      return state;
     default:
       return state;
   }
 }
 
 const stateToProps = (state: StoreModule) => {
-  let action = {
-    type: "fetch"
-  };
-
   return {
-    userList: userListReducer(state.userManage.userList, action)
+    userList: state.userManage.userList
   };
 };
 

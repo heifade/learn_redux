@@ -1,13 +1,12 @@
 import * as React from "react";
-import { UserModule } from "../../module/module";
+import { UserModule, StoreModule } from "../../module/module";
+import { Dispatch } from "redux";
 let styles = require("./userEdit.less");
 
 export interface Props {
   currEditUser: UserModule | null;
-
-  onUserNameChanged: (name: string) => {};
-  onSave: (userData: UserModule) => {};
-  onCancel: () => {};
+  dispatch: Dispatch;
+  state: StoreModule;
 }
 
 export class UserEditComponent extends React.Component<Props, any> {
@@ -16,13 +15,21 @@ export class UserEditComponent extends React.Component<Props, any> {
   }
 
   onUserNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onUserNameChanged(e.target.value);
+    this.props.dispatch({
+      type: "user_edit_username_changed",
+      value: e.target.value
+    });
   };
   onSave = () => {
-    this.props.onSave(this.props.currEditUser!);
+    this.props.dispatch({
+      type: "user_edit_save",
+      userData: this.props.currEditUser!
+    });
   };
   onCancel = () => {
-    this.props.onCancel();
+    this.props.dispatch({
+      type: "user_edit_cancel"
+    });
   };
 
   render() {
