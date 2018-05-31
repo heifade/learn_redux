@@ -3,16 +3,14 @@ export class UserModule {
   name: string;
 }
 
-export class TopModule {
-  waitShow: boolean;
+export let store : {
+  userManage: {
+    userListManage: {
+      userList: Array<UserModule>,
+      isFetching: boolean,
+    },
+    currEditUser: UserModule | null,
+  }
 }
 
-export class UserManageModule {
-  userList: Array<UserModule>;
-  currEditUser: UserModule | null;
-}
 
-export class StoreModule {
-  userManage: UserManageModule;
-  top: TopModule;
-}

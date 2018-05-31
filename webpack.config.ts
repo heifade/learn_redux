@@ -67,6 +67,18 @@ export default function(env: any, argv: any) {
           ]
         },
         {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                //modules: true
+              }
+            }
+          ]
+        },
+        {
           test: /\.less$/,
           exclude: /node_modules/,
           use: [

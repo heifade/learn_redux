@@ -1,5 +1,6 @@
 import * as React from "react";
 import { UserModule } from "../../module/module";
+import { Spin } from "antd";
 let styles = require("./userList.less");
 
 export interface Props {
@@ -28,6 +29,7 @@ export class UserListComponent extends React.Component<Props, any> {
   render() {
     return (
       <div className={styles.userList}>
+        <Spin />
         <table>
           <tbody>
             {(this.props.userList || []).map((user, index) => (

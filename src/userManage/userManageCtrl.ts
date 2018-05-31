@@ -2,7 +2,7 @@ import { Action, combineReducers } from "redux";
 import { userListReducer } from "./userList/userListCtrl";
 import { userEditReducer } from "./userEdit/userEditCtrl";
 import { connect } from "react-redux";
-import { UserManageModule } from "../module/module";
+// import { UserManageModule } from "../module/module";
 
 
 // export function userManageReducer(state = new UserManageModule(), action: Action) {
@@ -14,6 +14,6 @@ import { UserManageModule } from "../module/module";
 
 
 export let userManageReducer = combineReducers({
-  userList: userListReducer,
+  userListManage: userListReducer,
   currEditUser: userEditReducer
 });
