@@ -1,6 +1,7 @@
-import { createStore, Action, combineReducers } from "redux";
+import { createStore, Action, combineReducers, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk"; // 允许我们 dispatch() 函数
 import { userManageReducer } from "./userManage/userManageCtrl";
-// import { StoreModule } from "./module/module";
+import { createLogger } from "redux-logger";
 
 // export default function reducer(state = new StoreModule(), action: Action) {
 //   return {
@@ -9,11 +10,18 @@ import { userManageReducer } from "./userManage/userManageCtrl";
 //   };
 // }
 
+const loggerMiddleware = createLogger();
+
 let reducer = combineReducers({
-  userManage: userManageReducer,
+  userManage: userManageReducer
 });
 
-export let store = createStore(reducer);
+export let store = createStore(
+  reducer,
+  applyMiddleware(thunkMiddleware, 
+    loggerMiddleware
+  )
+);
 
 store.subscribe(() => {
   // console.log(1, store.getState());

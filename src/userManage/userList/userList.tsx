@@ -1,10 +1,10 @@
 import * as React from "react";
-import { UserModule } from "../../module/module";
-import { Spin } from "antd";
+import { UserModule, UserListManageModule } from "../../module/module";
+import { Spin, Table, Divider } from "antd";
 let styles = require("./userList.less");
 
 export interface Props {
-  userList: Array<UserModule>;
+  userListManage: UserListManageModule;
   delete: (userData: UserModule) => {};
   edit: (userData: UserModule) => {};
   fetch: () => {};
@@ -27,25 +27,35 @@ export class UserListComponent extends React.Component<Props, any> {
   }
 
   render() {
+    const dataSource = this.props.userListManage.userList.map((data, index) => ({...data, key: index}));
+    const columns = [
+      {
+        title: "编号",
+        dataIndex: "id",
+        key: "id"
+      },
+      {
+        title: "姓名",
+        dataIndex: "name",
+        key: "name"
+      }, {
+        title: '操作',
+        key: 'action',
+        width: 120,
+        render: (text: any, record: any) => (
+          <span>
+            <a href="javascript:;" onClick={() => this.edit(record)}>编辑</a><Divider type="vertical" />
+            <a href="javascript:;" onClick={() => this.delete(record)}>删除</a>
+          </span>
+        )
+      }
+    ];
+
     return (
       <div className={styles.userList}>
-        <Spin />
-        <table>
-          <tbody>
-            {(this.props.userList || []).map((user, index) => (
-              <tr key={index}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td className={styles.option} onClick={() => this.edit(user)}>
-                  编辑
-                </td>
-                <td className={styles.option} onClick={() => this.delete(user)}>
-                  删除
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Spin spinning={this.props.userListManage.isWaiting}>
+          <Table dataSource={dataSource} columns={columns} />
+        </Spin>
       </div>
     );
   }

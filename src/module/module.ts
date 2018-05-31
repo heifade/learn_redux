@@ -1,16 +1,24 @@
-export class UserModule {
+export interface UserModule {
   id: string;
   name: string;
 }
 
-export let store : {
-  userManage: {
-    userListManage: {
-      userList: Array<UserModule>,
-      isFetching: boolean,
-    },
-    currEditUser: UserModule | null,
-  }
+export interface UserListManageModule {
+  userList: Array<UserModule>;
+  isWaiting: boolean;
 }
 
+export interface UserEditManageModule {
+  user: UserModule | null,
+  isEditing: boolean,
+  isWaiting: boolean,
+}
 
+export interface UserManageModule {
+  userListManage: UserListManageModule;
+  userEditManage: UserEditManageModule;
+}
+
+export interface StoreModule {
+  userManage: UserManageModule;
+}
