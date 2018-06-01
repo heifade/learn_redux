@@ -1,12 +1,7 @@
 import React = require("react");
 import { Menu, Icon } from "antd";
 import { NavLink } from "react-router-dom";
-
-export interface MenuModule {
-  title: string;
-  path: string;
-  img: string;
-}
+import { MenuModule } from "./modules";
 
 export interface MenuProps {
   menuList: Array<MenuModule>;
@@ -15,7 +10,6 @@ export interface MenuProps {
 }
 
 export function MenuComponent(props: MenuProps) {
-
   function createMenu(menu?: MenuModule) {
     let parentPath = menu ? menu.path : "";
     let childMenuList = props.menuList.filter(m => {

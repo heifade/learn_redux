@@ -3,13 +3,13 @@ import { Provider } from "react-redux";
 import { Layout } from "antd";
 import { Route, Router, Switch, BrowserRouter, HashRouter } from "react-router-dom";
 import { store } from "../store";
-import { UserManage } from "../userManage/userManage";
-import { Index } from "../index/index";
 import "antd/dist/antd.css";
 import * as classname from "classnames";
-import { MenuProps, MenuModule, MenuComponent } from "./menu";
+import { MenuProps, MenuComponent } from "./menu";
 import { BreadcrumbComponent } from "./breadcrumb";
 import createHistory from "history/createHashHistory";
+import { MenuModule } from "./modules";
+import { menuList, routeList } from "./route";
 const history = createHistory();
 const styles = require("./app.less");
 
@@ -35,10 +35,7 @@ let MainComponent = (props: MenuProps) => {
           <BreadcrumbComponent {...props} path={path} />
 
           <Content>
-            <Switch>
-              <Route path="/index" component={Index} />
-              <Route path="/system/user" component={UserManage} />
-            </Switch>
+            <Switch>{routeList.map((m, i) => <Route key={i} path={m.path} component={m.component} />)}</Switch>
           </Content>
         </Layout>
       </Layout>
@@ -50,13 +47,6 @@ export class Props {}
 export class AppComponent extends React.Component<Props, any> {
   constructor(props: Props, context: any) {
     super(props, context);
-
-    let menuList: Array<MenuModule> = [
-      { title: "主页", path: "/index", img: "home" },
-      { title: "系统设置", path: "/system", img: "setting" },
-      { title: "用户管理", path: "/system/user", img: "user" },
-      { title: "角色管理", path: "/system/role", img: "solution" }
-    ];
 
     this.state = {
       path: getLocation(),
