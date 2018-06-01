@@ -1,0 +1,30 @@
+.app {
+  min-height: 100vh;
+
+  .header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .body {
+    margin-top: 64px;
+
+    .menu-side {
+      overflow: auto;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      width: 150px;
+    }
+
+    .content-side {
+      padding: 0 24px 24px;
+      margin-left: 200px;
+
+      .breadcrumb {
+        margin: 16px 0;
+      }
+    }
+  }
+}
