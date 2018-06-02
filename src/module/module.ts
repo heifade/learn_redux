@@ -4,21 +4,21 @@ export interface UserModule {
 }
 
 export interface UserListManageModule {
-  userList: Array<UserModule>;
-  isWaiting: boolean;
+  readonly userList: Array<UserModule>;
+  readonly isWaiting: boolean;
 }
 
 export interface UserEditManageModule {
-  user: UserModule | null,
-  isEditing: boolean,
-  isWaiting: boolean,
+  readonly user: UserModule | null,
+  readonly isEditing: boolean,
+  readonly isWaiting: boolean,
 }
 
 export interface UserManageModule {
-  userListManage: UserListManageModule;
-  userEditManage: UserEditManageModule;
+  readonly userListManage: UserListManageModule;
+  readonly userEditManage: UserEditManageModule;
 }
 
 export interface StoreModule {
-  userManage: UserManageModule;
+  readonly userManage: UserManageModule;
 }
